@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <vector>
 
@@ -42,73 +41,82 @@ devise a plan:
 
 */
 
-class InsertionSort
+class Merge
 {
 
 public:
-    InsertionSort() : nElements(0) {};
-    InsertionSort(int max) : nElements(0)
+    Merge(int max) : maxSize(max), nElements(0)
     {
-        myVector.resize(max);
+        myVector.resize(maxSize);
     }
 
-    void insert(double value)
+    void display()
     {
+        if (nElements != 0)
+        {
+            for (int i{0}; i < nElements; i++)
+            {
+                cout << myVector[i] << " ";
+            }
+            cout << endl;
+        }
+        else
+        {
+            cout << "nothing to display!" << endl;
+        }
+    }
+
+    void insert(int value)
+    {
+
         myVector[nElements] = value;
         nElements++;
     }
-    void display()
+
+    bool isEmpty()
     {
-        for (int i{0}; i < nElements; i++)
-        {
-            cout << myVector[i] << " ";
-        }
-        cout << endl;
+        return (nElements == 0);
     }
 
-    
-
-    void insertionSorting()
+    bool isFull()
     {
-        int in, out;
+        return (nElements == maxSize);
+    }
 
-        for (out = 1; out < nElements; out++)
-        {
+    void mergeSort()
 
-            double temp = myVector[out];
-            in = out;
-            while (in > 0 && myVector[in - 1] >= temp)
-            {
-                myVector[in] = myVector[in - 1];
-                in--;
-            }
-            myVector[in] = temp;
-        }
+    // we need to sub arrays
+    {
     }
 
 private:
     vector<double> myVector;
     int nElements;
+    int maxSize;
 };
 
 main()
 {
-    InsertionSort ins1(100);
 
+    Merge m(10);
 
+    m.insert(4);
+    m.insert(8);
+    m.insert(2);
+    m.insert(1);
+    m.insert(3);
+    m.insert(9);
+    m.insert(7);
+    m.insert(5);
 
-    ins1.insert(2);
-    ins1.insert(4);
-    ins1.insert(1);
-    ins1.insert(3);
-    ins1.insert(9);
-    ins1.insert(1);
-    ins1.insert(5);
+    m.display();
 
-    ins1.display();
-    ins1.insertionSorting();
-
-    ins1.display();
-
-   
+    if (m.isEmpty() == true)
+    {
+        cout << "The array is Empty!" << endl;
+    }
+    else
+    {
+        cout << "The array is Not Empty!" << endl;
+    }
 }
