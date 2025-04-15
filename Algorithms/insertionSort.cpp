@@ -32,7 +32,7 @@ devise a plan:
         - make a loop start from "out" 1 and ended if "out" is less than nElement and "out++"
             - assign element at index "out" in "myVector" to variable called "temp" of type "double".
             - assign out to in.
-            - make a while loop if in greater than 0 and the element at index in-1 in myVector is greater or equal than temp.
+            - make a while loop if "in" greater than 0 and the element at index "in-1" in myVector is greater or equal than temp.
                 - assign the element at index "in-1" in myVector to the element at index "in" in myVector.
                 - decrement the element "in" by one.
             - assign "temp" to the element at index "in" in myVector.
@@ -42,13 +42,67 @@ devise a plan:
 
 */
 
-class HighArray
+class InsertionSort
 {
 
 public:
+    InsertionSort() : nElements(0) {};
+    InsertionSort(int max) : nElements(0)
+    {
+        myVector.resize(max);
+    }
+
+    void insert(double value)
+    {
+        myVector[nElements] = value;
+        nElements++;
+    }
+    void display()
+    {
+        for (int i{0}; i < nElements; i++)
+        {
+            cout << myVector[i] << " ";
+        }
+        cout << endl;
+    }
+
+    void insertionSorting()
+    {
+        int in, out;
+
+        for (out = 1; out < nElements; out++)
+        {
+
+            double temp = myVector[out];
+            in = out;
+            while (in > 0 && myVector[in - 1] >= temp)
+            {
+                myVector[in] = myVector[in - 1];
+                in--;
+            }
+            myVector[in] = temp;
+        }
+    }
+
 private:
+    vector<double> myVector;
+    int nElements;
 };
 
 main()
 {
+    InsertionSort ins1(100);
+
+    ins1.insert(2);
+    ins1.insert(4);
+    ins1.insert(1);
+    ins1.insert(3);
+    ins1.insert(9);
+    ins1.insert(1);
+    ins1.insert(5);
+
+    ins1.display();
+    ins1.insertionSorting();
+
+    ins1.display();
 }

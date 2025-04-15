@@ -40,13 +40,71 @@ devise a plan:
 
 */
 
-class HighArray
+class BubbleSort
 {
 
 public:
+    BubbleSort() : nElements(0) {}
+    BubbleSort(int max) : nElements(0)
+    {
+        myVector.resize(max);
+    }
+
+    void insert(double value)
+    {
+        myVector[nElements] = value;
+        nElements++;
+    }
+
+    void display()
+    {
+
+        for (int i{0}; i < nElements; i++)
+        {
+            cout << myVector[i] << " ";
+            // cout << endl;
+        }
+    }
+
+    void bubbleSorting()
+    {
+
+        int out, in;
+
+        for (out = nElements - 1; out > 1; out--)
+        {
+            for (in = 0; in < out; in++)
+            {
+                if (myVector[in] > myVector[in + 1])
+                    swap(myVector[in], myVector[in + 1]);
+            }
+        }
+    }
+
 private:
+    vector<double> myVector;
+    int nElements;
 };
 
 main()
 {
+
+    BubbleSort b1(100);
+
+    b1.insert(2);
+    b1.insert(5);
+    b1.insert(1);
+    b1.insert(8);
+    b1.insert(6);
+    b1.insert(7);
+    b1.insert(3);
+    b1.insert(9);
+    b1.insert(4);
+
+    b1.display();
+    b1.bubbleSorting();
+
+    cout << endl;
+
+    b1.display();
 }
