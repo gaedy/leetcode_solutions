@@ -32,9 +32,6 @@ devise a plan:
     - make a method called "isFull" takes nothing and returns bool.
         - return true if the maxSize elements is equal to nElements.
 
-
-
-
 */
 
 class PriorityQueue
@@ -58,7 +55,7 @@ public:
         }
         else
         {
-            for (int i = nElements - 1; i > 0; i--)
+            for (int i = nElements - 1; i >= 0; i--)
             {
                 if (value > myPQVector[i])
                 {
@@ -74,8 +71,44 @@ public:
             }
         }
     }
+
+    double remove()
+    {
+        return myPQVector[--nElements];
+    }
+    double peekMIN()
+    {
+        return myPQVector[nElements - 1];
+    }
+
+    bool isEmpty()
+    {
+        return nElements == 0;
+    }
+    bool isFull()
+    {
+        return nElements == maxSize;
+    }
+
+    void display()
+    {
+        for (int i{0}; i < nElements; i++)
+        {
+            cout << myPQVector[i] << " ";
+        }
+        cout << endl;
+    }
 };
 
 int main()
 {
+
+    PriorityQueue pq(100);
+
+    pq.insert(12);
+    pq.insert(15);
+    pq.insert(16);
+    pq.insert(18);
+
+    pq.display();
 }
