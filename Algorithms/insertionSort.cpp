@@ -66,8 +66,6 @@ public:
         cout << endl;
     }
 
-    
-
     void insertionSorting()
     {
         int in, out;
@@ -91,11 +89,9 @@ private:
     int nElements;
 };
 
-main()
+int main()
 {
     InsertionSort ins1(100);
-
-
 
     ins1.insert(2);
     ins1.insert(4);
@@ -109,6 +105,4 @@ main()
     ins1.insertionSorting();
 
     ins1.display();
-
-   
 }
