@@ -1,0 +1,2 @@
+myQueueVector[++rear] = value;
+        nElements++;

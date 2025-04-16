@@ -2,5 +2,9 @@
     "files.associations": {
         "*.css": "tailwindcss",
         "ostream": "cpp"
+    },
+
+    "files.exclude": {
+        "**/*.exe": true
     }
 }

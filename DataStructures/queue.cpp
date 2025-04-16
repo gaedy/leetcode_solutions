@@ -58,6 +58,7 @@ public:
         if (rear == maxSize - 1)
         {
             rear = -1;
+            
         }
         myQueueVector[++rear] = value;
         nElements++;
@@ -66,7 +67,7 @@ public:
     int remove()
     {
 
-        double temp = myQueueVector[front++];
+        int temp = myQueueVector[front++];
 
         if (front == maxSize)
         {
@@ -115,7 +116,10 @@ int main()
     q.insert(2);
     q.insert(9);
     q.insert(3);
+    q.insert(8);
 
-    cout << q.peekFront();
+    // cout << q.peekFront();
+    q.display();
+    q.remove();
     q.display();
 }
