@@ -44,6 +44,72 @@ devise a plan:
 
 */
 
+class Link
+{
+
+public:
+    int iData;
+    double dData;
+    Link *pNext;
+
+    Link(int id, double dd) : iData(id), dData(dd), pNext(NULL)
+    {
+    }
+
+    void displayLink()
+    {
+        cout << "{ " << iData << ", " << dData << " }" << endl;
+    }
+};
+
+class LinkedList
+{
+private:
+    Link *pFirst;
+
+public:
+    LinkedList() : pFirst(NULL) {}
+
+    void insertFirst(int id, double dd)
+    {
+        Link *newLink = new Link(id, dd);
+        newLink->pNext = pFirst;
+        pFirst = newLink;
+    }
+
+    Link *getFirst()
+    {
+        return pFirst;
+    }
+
+    void removeFirst()
+    {
+        Link *pTemp = pFirst;
+        pFirst = pFirst->pNext;
+        delete pTemp;
+    }
+
+    void displayList()
+    {
+        Link *pCurrent = pFirst;
+
+        while (pCurrent != NULL)
+        {
+            pCurrent->displayLink();
+            pCurrent = pCurrent->pNext;
+        }
+        cout << endl;
+    }
+};
+
 int main()
 {
+
+    LinkedList theList;
+
+    theList.insertFirst(22, 2.33);
+    theList.insertFirst(55, 2.53);
+    theList.insertFirst(32, 2.93);
+
+    theList.displayList();
 }
