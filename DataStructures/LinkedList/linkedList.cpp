@@ -44,10 +44,9 @@ devise a plan:
 
 */
 
-class Link
+struct Link
 {
 
-public:
     int iData;
     double dData;
     Link *pNext;
@@ -62,17 +61,19 @@ public:
     }
 };
 
+typedef Link *node;
+
 class LinkedList
 {
 private:
-    Link *pFirst;
+    node pFirst;
 
 public:
     LinkedList() : pFirst(NULL) {}
 
     void insertFirst(int id, double dd)
     {
-        Link *newLink = new Link(id, dd);
+        node newLink = new Link(id, dd);
         newLink->pNext = pFirst;
         pFirst = newLink;
     }
@@ -84,14 +85,14 @@ public:
 
     void removeFirst()
     {
-        Link *pTemp = pFirst;
+        node pTemp = pFirst;
         pFirst = pFirst->pNext;
         delete pTemp;
     }
 
     void displayList()
     {
-        Link *pCurrent = pFirst;
+        node pCurrent = pFirst;
 
         while (pCurrent != NULL)
         {
