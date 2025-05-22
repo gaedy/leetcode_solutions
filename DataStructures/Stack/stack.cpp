@@ -28,56 +28,64 @@ devise a plan:
 
 */
 
-class StackX
+class Stack
 {
-private:
-    vector<double> myStackVector;
-    int maxSize;
-    int top;
-
 public:
-    StackX(int max) : maxSize(max), top(-1)
+    explicit Stack(const int max) : maxSize(max), nElements(0), top(-1)
     {
-        myStackVector.resize(maxSize);
+        data.reserve(maxSize);
     }
 
-    void push(double value)
+    void push(const double value)
     {
-
-        myStackVector[top++] = value;
-    }
-    double pop()
-    {
-        return myStackVector[top--];
+        data[++top] = value; // assign before ( must be ++top not top++ );
+        nElements++;
     }
 
     double peek()
     {
-        return myStackVector[top];
+        return data[top];
+    }
+
+    double pop()
+    {
+        nElements--;
+        return data[top--];
     }
 
     bool isEmpty()
     {
-        return (top == -1);
+        return (nElements < 1);
     }
-    bool isFull()
+
+    void display()
     {
-        return (top == maxSize - 1);
+        cout << "Stack Peek: " << peek() << ", Number of Stack Elements: " << nElements;
+
+        cout << endl;
     }
+
+private:
+    vector<double> data;
+    int maxSize;
+    int nElements;
+    int top;
 };
 
 int main()
 {
 
-    StackX st(100);
+    Stack s(10);
 
-    st.push(12);
-    st.push(24);
-    st.push(35);
-    st.push(71);
-    st.push(21);
-    st.push(98);
-    st.push(56);
+    s.push(59);
+    s.push(29);
+    s.push(39);
+    s.push(38);
+    s.push(47);
+    s.push(89);
 
-    cout << st.peek();
+    s.display();
+    s.pop();
+
+    s.display();
 }

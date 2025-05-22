@@ -14,7 +14,7 @@ devise a plan:
 - in private:
     - make 2 variables a vector of type "double" called "myVector" and an integer called "nElements".
     - make a method called "swap" that returns a void and takes 2 parameters ( int one , int two).
-        - assign myVector at index "one" to "temp" variable of type double.abort
+        - assign myVector at index "one" to "temp" variable of type double.
         - assign myVector at index "two" to myVector at index one.
         - assign temp to myVector at index "two".
 - public:

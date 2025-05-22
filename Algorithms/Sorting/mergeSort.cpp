@@ -1,122 +1,107 @@
 #include <iostream>
 #include <vector>
-
 using namespace std;
 
 /*
 devise a plan:
 
-** in O(n2) time
-
-
-- make a class called "ArrayBubble"
-- in private:
-    - make 2 variables a vector of type "double" called "myVector" and an integer called "nElements".
-    - make a method called "swap" that returns a void and takes 2 parameters ( int one , int two).
-        - assign myVector at index "one" to "temp" variable of type double.abort
-        - assign myVector at index "two" to myVector at index one.
-        - assign temp to myVector at index "two".
-- public:
-    - make a default constructor that takes a paramater ( int max ) and assign a zero to nElement variable.
-        - resize myVector to hold exact max value.
-    - make a method called "insert" that takes a parameter "value" of type double.
-        - assign value to myVector at index nElement.
-        - increment nElement by one.
-    - make a method called "Display" that return void.
-        - make a loop start from zero and ended if j is bigger than nElement and j++.
-            - print myVector at index j.
-            - print end line.
-    - make a method called "insertionSort" that returns void.
-        - initialize two variables call them out and in.
-        - make a loop start from "out" 1 and ended if "out" is less than nElement and "out++"
-            - assign element at index "out" in "myVector" to variable called "temp" of type "double".
-            - assign out to in.
-            - make a while loop if "in" greater than 0 and the element at index "in-1" in myVector is greater or equal than temp.
-                - assign the element at index "in-1" in myVector to the element at index "in" in myVector.
-                - decrement the element "in" by one.
-            - assign "temp" to the element at index "in" in myVector.
-
-
-
+- class Array:
+    - to insert and display and theMergeSort function.
+    - make 2 functions ( mergeSort - merge ).
 
 */
 
-class Merge
+class Array
 {
+private:
+    vector<double> theVec;
+    int nElem;
+    void mergeSort(vector<double>, int, int);
+    void merge(vector<double>, int, int, int);
 
 public:
-    Merge(int max) : maxSize(max), nElements(0)
+    Array(int max) : nElem(0)
     {
-        myVector.resize(maxSize);
-    }
-
-    void display()
-    {
-        if (nElements != 0)
-        {
-            for (int i{0}; i < nElements; i++)
-            {
-                cout << myVector[i] << " ";
-            }
-            cout << endl;
-        }
-        else
-        {
-            cout << "nothing to display!" << endl;
-        }
+        theVec.resize(max);
     }
 
     void insert(int value)
     {
-
-        myVector[nElements] = value;
-        nElements++;
+        theVec[nElem] = value;
+        nElem++;
     }
-
-    bool isEmpty()
+    void display()
     {
-        return (nElements == 0);
+        cout << "Array: ";
+        for (int i = 0; i < nElem; i++)
+        {
+            cout << theVec[i] << " ";
+        }
+        cout << endl;
     }
 
-    bool isFull()
-    {
-        return (nElements == maxSize);
+    void mergeSorting() {
+        vector <double> workSpace;
+        workSpace.resize(nElem);
+        mergeSort(workSpace, 0, nElem - 1);
     }
-
-    void mergeSort()
-
-    // we need to sub arrays
-    {
-    }
-
-private:
-    vector<double> myVector;
-    int nElements;
-    int maxSize;
 };
 
-main()
+void Array::mergeSort(vector<double> arr, int low, int high) {
+    if (low == high) {
+        return;
+    }
+    else {
+        int mid = (low + high) / 2;
+        mergeSort(arr, low, mid);
+        mergeSort(arr, mid+1, high);
+        merge(arr, low, mid+1, high);
+    }
+}
+
+void Array::merge(vector <double> arr, int lowPtr, int highPtr, int upperBound) {
+    int i = 0;
+    int mid = highPtr - 1;
+    
+    int lowerBound = lowPtr;
+    int n = upperBound - lowerBound + 1 ;
+
+    while (lowPtr <= mid && highPtr <= upperBound) {
+        if (theVec[lowPtr ] < theVec[highPtr]) {
+            arr[i++] = theVec[lowPtr++];
+        }
+        else {
+            arr[i++] = theVec[highPtr++];
+        }
+    }
+
+    while (lowPtr <= mid ) {
+        arr[i++] = theVec[lowPtr++];
+    }
+    while (highPtr <= upperBound ) {
+        arr[i++] = theVec[highPtr++];
+    }
+
+    for (i = 0; i < n; i++) {
+        
+        theVec[lowerBound + i] = arr[i];
+        
+    }
+}
+
+
+int main()
 {
 
-    Merge m(10);
+    Array a(10);
+    a.insert(45);
+    a.insert(41);
+    a.insert(49);
+    a.insert(44);
+    a.insert(48);
+    a.insert(47);
 
-    m.insert(4);
-    m.insert(8);
-    m.insert(2);
-    m.insert(1);
-    m.insert(3);
-    m.insert(9);
-    m.insert(7);
-    m.insert(5);
-
-    m.display();
-
-    if (m.isEmpty() == true)
-    {
-        cout << "The array is Empty!" << endl;
-    }
-    else
-    {
-        cout << "The array is Not Empty!" << endl;
-    }
+    a.display();
+    a.mergeSorting();
+    a.display();
 }

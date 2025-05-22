@@ -2,7 +2,12 @@
     "files.associations": {
         "*.css": "tailwindcss",
         "ostream": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "array": "cpp",
+        "string_view": "cpp",
+        "initializer_list": "cpp",
+        "span": "cpp",
+        "unordered_map": "cpp"
     },
 
     "files.exclude": {
