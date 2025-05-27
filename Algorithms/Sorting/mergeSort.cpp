@@ -15,92 +15,98 @@ class Array
 {
 private:
     vector<double> theVec;
-    int nElem;
+    int nElements;
     void mergeSort(vector<double>, int, int);
     void merge(vector<double>, int, int, int);
 
 public:
-    Array(int max) : nElem(0)
+    Array(int max) : nElements(0)
     {
         theVec.resize(max);
-    }
+    };
 
     void insert(int value)
     {
-        theVec[nElem] = value;
-        nElem++;
+        theVec[nElements] = value;
+        nElements++;
     }
+
     void display()
     {
         cout << "Array: ";
-        for (int i = 0; i < nElem; i++)
+        for (int i = 0; i < nElements; i++)
         {
             cout << theVec[i] << " ";
         }
         cout << endl;
     }
 
-    void mergeSorting() {
-        vector <double> workSpace;
-        workSpace.resize(nElem);
-        mergeSort(workSpace, 0, nElem - 1);
+    void mergeSorting()
+    {
+        vector<double> arr;
+        arr.resize(nElements);
+        mergeSort(arr, 0, nElements - 1);
     }
 };
 
-void Array::mergeSort(vector<double> arr, int low, int high) {
-    if (low == high) {
+void Array::mergeSort(vector<double> arr, int low, int high)
+{
+    if (low == high)
+    {
         return;
     }
-    else {
+    else
+    {
         int mid = (low + high) / 2;
         mergeSort(arr, low, mid);
-        mergeSort(arr, mid+1, high);
-        merge(arr, low, mid+1, high);
+        mergeSort(arr, mid + 1, high);
+        merge(arr, low, mid + 1, high);
     }
 }
 
-void Array::merge(vector <double> arr, int lowPtr, int highPtr, int upperBound) {
+void Array::merge(vector<double> arr, int lowPtr, int highPtr, int upperBound)
+{
     int i = 0;
-    int mid = highPtr - 1;
-    
     int lowerBound = lowPtr;
-    int n = upperBound - lowerBound + 1 ;
+    int mid = highPtr - 1;
+    int n = upperBound - lowPtr + 1;
 
-    while (lowPtr <= mid && highPtr <= upperBound) {
-        if (theVec[lowPtr ] < theVec[highPtr]) {
+    while (lowPtr <= mid && highPtr <= upperBound)
+    {
+        if (theVec[lowPtr] < theVec[highPtr])
+        {
             arr[i++] = theVec[lowPtr++];
         }
-        else {
+        else
+        {
             arr[i++] = theVec[highPtr++];
         }
     }
 
-    while (lowPtr <= mid ) {
+    while (lowPtr <= mid)
+    {
         arr[i++] = theVec[lowPtr++];
     }
-    while (highPtr <= upperBound ) {
+    while (highPtr <= upperBound)
+    {
         arr[i++] = theVec[highPtr++];
     }
 
-    for (i = 0; i < n; i++) {
-        
+    for (i = 0; i < n; i++)
+    {
         theVec[lowerBound + i] = arr[i];
-        
     }
 }
-
 
 int main()
 {
 
     Array a(10);
-    a.insert(45);
-    a.insert(41);
-    a.insert(49);
-    a.insert(44);
-    a.insert(48);
-    a.insert(47);
-
+    a.insert(85);
+    a.insert(87);
+    a.insert(72);
+    a.insert(63);
+    a.insert(98);
     a.display();
     a.mergeSorting();
     a.display();
